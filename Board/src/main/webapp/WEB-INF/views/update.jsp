@@ -1,26 +1,85 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>update</title>
+		<style>
+			img {
+				width: 150px;
+				height: 50px;
+				margin-left: 595px;
+			}
+			table {
+				width: 700px;
+				height: 600px;
+				border: 1px solid #F2F2F2;
+				border-collapse: collapse;
+				margin: 20px auto;
+			}
+			
+			th {
+				background-color: #E6E6E6;
+				border-bottom: 1px solid #F2F2F2;
+				padding: 15px;
+			}
+			
+			td {
+				border-bottom: 1px solid #F2F2F2;
+				padding: 10px;
+			}
+			
+			.title {
+				border-radius: 5px;
+				width: 500px;
+				height: 20px;
+				padding-left: 10px;
+			}
+			
+			.info {
+				border-bottom: hidden;
+				text-align: right;
+				font-size: small;
+			}
+			
+			.content {
+				border-radius: 2px;
+				width: 550px;
+				resize: none;
+				overflow: hidden;
+				padding: 10px;
+				margin-bottom: 20px;
+			}
+		</style>
 	</head>
 	<body>
-		<form:form modelAttribute="board" name="form" action="db?devision=update" method="post">
-			<table border="1">
+		<h1><img src="./resources/images/알파코-logo-02.png" /></h1>
+		<font size="5" style="margin-left: 620px;"> <b>글 수정</b> </font>
+		<form:form modelAttribute="board" name="form" action="db?devision=update&id=${board.id}" method="post" onSubmit="return clickEvent('등록')">
+			<table>
 				<tr>
-					<td><form:input path="id" readonly="true" /></td>
-					<td><form:input path="title" /></td>
+					<th height="20ox">제목</th>
+					<td colspan="3"><form:input path="title" class="title" /></td>
 				</tr>
-				 
 				<tr>
-					<td colspan="2"><form:input path="content" /></td>
+					<th class="info"></th>
+					<td class="info" style="text-align: left;">글번호 &nbsp;${board.id }</td>
+					<td class="info">작성일 &nbsp;
+										<fmt:formatDate var="formatDate" value="${board.date }" pattern="yyyy-MM-dd HH:mm:ss"/>
+										${formatDate }</td>
+					<td class="info" width="100px">조회수 &nbsp;${board.viewCnt }</td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td colspan="3"><form:textarea path="content" cols="40" rows="30" class="content" /></td>
 				</tr>
 			</table>
-			<input type="submit" value="등록" />
-			<input type="button" value="취소" onClick="clickEvent('취소')" />
+			<input type="submit" value="등록" style="margin-left:1200px; padding: 2px 10px;" />
+			<input type="button" value="취소" onClick="clickEvent('취소')" style="padding: 2px 10px;" />
 		</form:form>
 		
 		<script>
