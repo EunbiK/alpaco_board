@@ -35,9 +35,15 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public String oneView(Locale locale, Model model, @RequestParam(value="id") int id) {
-		boardService.updateViewCnt(id);
+	public String oneView(Locale locale, Model model, 
+							@RequestParam(value="id") int id,
+							@RequestParam(value="division", required=false) String division) {
+		if (division != null) {	//조회할때만 조회수 올리기 (insert, update이후 조회 제외)
+			boardService.updateViewCnt(id);
+		}
+		
 		BoardBean oneview = boardService.selectOne(id);
+		
 		model.addAttribute("view", oneview);
 		return "view";
 	}

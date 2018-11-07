@@ -9,17 +9,32 @@
 		<meta charset="UTF-8">
 		<title>update</title>
 		<style>
+			#container {
+				width: 1000px;
+				margin: 0px auto;
+				padding: 20px;
+			}
+			
+			#header {
+				padding: 20px;
+			}
+			
+			#contents {
+				width: 700px;
+				margin: 0px auto;
+			}
+			
 			img {
 				width: 150px;
 				height: 50px;
-				margin-left: 595px;
 			}
+			
 			table {
 				width: 700px;
 				height: 600px;
-				border: 1px solid #F2F2F2;
+				border-top: 1px solid #F2F2F2;
 				border-collapse: collapse;
-				margin: 20px auto;
+				margin-bottom: 20px;
 			}
 			
 			th {
@@ -57,30 +72,38 @@
 		</style>
 	</head>
 	<body>
-		<h1><img src="./resources/images/알파코-logo-02.png" /></h1>
-		<font size="5" style="margin-left: 620px;"> <b>글 수정</b> </font>
-		<form:form modelAttribute="board" name="form" action="db?devision=update&id=${board.id}" method="post" onSubmit="return clickEvent('등록')">
-			<table>
-				<tr>
-					<th height="20ox">제목</th>
-					<td colspan="3"><form:input path="title" class="title" /></td>
-				</tr>
-				<tr>
-					<th class="info"></th>
-					<td class="info" style="text-align: left;">글번호 &nbsp;${board.id }</td>
-					<td class="info">작성일 &nbsp;
-										<fmt:formatDate var="formatDate" value="${board.date }" pattern="yyyy-MM-dd HH:mm:ss"/>
-										${formatDate }</td>
-					<td class="info" width="100px">조회수 &nbsp;${board.viewCnt }</td>
-				</tr>
-				<tr>
-					<th>내용</th>
-					<td colspan="3"><form:textarea path="content" cols="40" rows="30" class="content" /></td>
-				</tr>
-			</table>
-			<input type="submit" value="등록" style="margin-left:1200px; padding: 2px 10px;" />
-			<input type="button" value="취소" onClick="clickEvent('취소')" style="padding: 2px 10px;" />
-		</form:form>
+		<div id="container">
+			<div id="header">
+				<img src="./resources/images/알파코-logo-02.png" />
+			</div>
+			<div id="contents">
+				<h2>글 수정</h2>
+				<form:form modelAttribute="board" name="form" action="db?devision=update&id=${board.id}" method="post" onSubmit="return clickEvent('등록')">
+					<table>
+						<tr>
+							<th height="20px">제목</th>
+							<td colspan="3"><form:input path="title" class="title" /></td>
+						</tr>
+						<tr>
+							<th class="info"></th>
+							<td class="info" style="text-align: left;">글번호 &nbsp;${board.id }</td>
+							<td class="info">작성일 &nbsp;
+												<fmt:formatDate var="formatDate" value="${board.date }" pattern="yyyy-MM-dd HH:mm:ss"/>
+												${formatDate }</td>
+							<td class="info" width="100px">조회수 &nbsp;${board.viewCnt }</td>
+						</tr>
+						<tr>
+							<th>내용</th>
+							<td colspan="3"><form:textarea path="content" cols="10" rows="30" class="content" /></td>
+						</tr>
+					</table>
+					<div style="text-align:right;">
+						<input type="submit" value="등록" style="padding: 2px 10px;" />
+						<input type="button" value="취소" onClick="clickEvent('취소')" style="padding: 2px 10px;" />
+					</div>
+				</form:form>
+			</div>
+		</div>
 		
 		<script>
 			//유효성체크

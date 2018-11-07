@@ -8,27 +8,38 @@
 		<meta charset="UTF-8">
 		<title>Insert</title>
 		<style>
+			#container {
+				width: 1000px;
+				margin: 0px auto;
+				padding: 20px;
+			}
+			
+			#header {
+				padding: 20px;
+			}
+			
+			#contents {
+				width: 700px;
+				margin: 0px auto;
+			}
+			
 			img {
-					width: 150px;
-					height: 50px;
-					margin-left: 595px;
-				}
+				width: 150px;
+				height: 50px;
+			}
+				
 			table {
 				width: 700px;
 				height: 650px;
 				border-top: 1px solid #F2F2F2;
 				border-collapse: collapse;
 				margin: 20px auto;
-				/* margin-left: auto;
-				margin-right: auto;
-				margin-bottom: 20px; */
 			}
 			
 			th {
 				background-color: #E6E6E6;
 				border-bottom: 1px solid #F2F2F2;
 				padding: 15px;
-				
 			}
 			
 			td {
@@ -55,22 +66,30 @@
 		</style>
 	</head>
 	<body>
-		<h1><img src="./resources/images/알파코-logo-02.png" /></h1>
-		<font size="5" style="margin-left: 650px;"> <b>새 글</b> </font>
-		<form:form modelAttribute="board" name="form" action="db?devision=insert" method="post" onSubmit="return clickEvent('등록')">
-			<table>
-				<tr> 
-					<th height="20px">제목</th>
-					<td><form:input path="title" placeHolder="제목을 입력하세요." class="title" /></td>
-				</tr>
-				<tr>
-					<th>내용</th>
-					<td><form:textarea path="content" placeHolder="내용을 입력하세요." cols="40" rows="35" class="content" /></td>
-				</tr>
-			</table>
-			<input type="submit" value="등록" style="margin-left: 1150px; padding: 2px 10px;" />
-			<input type="button" value="취소" onClick="clickEvent('취소')" style="padding: 2px 10px;" />
-		</form:form>
+		<div id="container">
+			<div id="header">
+				<img src="./resources/images/알파코-logo-02.png" />
+			</div>
+			<div id="contents">
+				<h2>새 글</h2>
+				<form:form modelAttribute="board" name="form" action="db?devision=insert" method="post" onSubmit="return clickEvent('등록')">
+					<table>
+						<tr> 
+							<th height="20px">제목</th>
+							<td><form:input path="title" placeHolder="제목을 입력하세요." class="title" /></td>
+						</tr>
+						<tr>
+							<th>내용</th>
+							<td><form:textarea path="content" placeHolder="내용을 입력하세요." cols="40" rows="35" class="content" /></td>
+						</tr>
+					</table>
+					<div style="text-align: right">
+						<input type="submit" value="등록" style="padding: 2px 10px;" />
+						<input type="button" value="취소" onClick="clickEvent('취소')" style="padding: 2px 10px;" />
+					</div>
+				</form:form>
+			</div>
+		</div>
 		
 		<script>
 			//유효성체크
