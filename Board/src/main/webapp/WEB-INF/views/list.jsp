@@ -55,9 +55,9 @@
 				<th width="25%">작성일</th>
 				<th width="15%">조회수</th>
 			</tr>
-			<c:forEach items="${boardList}" var="board">
+			<c:forEach items="${boardList}" var="board" varStatus="status">
 				<tr>
-					<td class="alignCenter">${board.id }</td>
+					<td class="alignCenter"><c:out value="${status.count }"/></td>
 					<td><a href="view?id=${board.id}">${board.title }</a></td>
 					<td class="alignCenter"><fmt:formatDate var="formatDate" value="${board.date }" pattern="yyyy-MM-dd"/>${formatDate }</td>
 					<td class="alignCenter">${board.viewCnt }</td>
